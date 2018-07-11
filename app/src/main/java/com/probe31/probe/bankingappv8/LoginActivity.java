@@ -21,21 +21,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
         loginActivityVM = ViewModelProviders.of(this).get(LoginActivityViewModel.class);
-
-        /*loginActivityVM.getLoginStatus().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(@Nullable Boolean isLogin) {
-                if(isLogin)
-                {
-                    goToMainMenu();
-                }
-            }
-        });*/
-
-
-
     }
 
     public void sendLoginForm(View view) {
@@ -49,7 +35,6 @@ public class LoginActivity extends AppCompatActivity {
         loginActivityVM.tryLogin(dni, password).observe(this, new Observer<TokenResponse>() {
             @Override
             public void onChanged(@Nullable TokenResponse tokenResponse) {
-                Log.d("view", tokenResponse.toString());
                 if(tokenResponse!=null)
                 {
                     goToMainMenu();
@@ -62,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 
     void goToMainMenu()
     {
-        Intent intent = new Intent(this, MainMenuActivity.class);
+        Intent intent = new Intent(this, OptionsActivity.class);
         startActivity(intent);
     }
 }
