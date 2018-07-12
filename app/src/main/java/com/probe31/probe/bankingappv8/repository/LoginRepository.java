@@ -34,9 +34,6 @@ public class LoginRepository {
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
                 TokenResponse tokenResponse = response.body();
 
-                Log.d("bherring", "On response");
-                Log.d("repository", "response" + response.toString() + " access_token " + response.body().getAccess_token());
-
                 if(tokenResponse != null)
                 {
                     tokenResponseMutableLiveData.setValue(tokenResponse);
@@ -52,7 +49,7 @@ public class LoginRepository {
             @Override
             public void onFailure(Call<TokenResponse> call, Throwable t) {
 
-                Log.d("bherring", "On failure");
+                Log.d("bherring", "On failure " + t);
                 tokenResponseMutableLiveData.setValue(null);
 
             }

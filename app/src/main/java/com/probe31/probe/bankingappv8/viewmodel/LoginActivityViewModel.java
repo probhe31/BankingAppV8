@@ -35,7 +35,7 @@ public class LoginActivityViewModel extends ViewModel{
         tokenRequest.setPassword(password);
         tokenRequest.setGrant_type("password");
         tokenRequest.setClient_id("2");
-        tokenRequest.setClient_secret("8F69XflRI1FKdxiCQdqFZJXDgfv9pWVM9mQ2n16w");
+        tokenRequest.setClient_secret("Dz7cZeLBcUgiL8Jj5psRJdRUU964EsbkAXtsmZEf");
 
         tokenResponse = loginRepository.getToken(tokenRequest);
 

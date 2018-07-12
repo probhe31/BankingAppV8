@@ -61,7 +61,7 @@ public class AccountsFragment extends Fragment {
                 {
                     accountList= accountResponse;
                     accountsRecyclerAdapter.setAccountList(accountList);
-                    Toast.makeText(getActivity(), "You are inside Import Fragment", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getActivity(), "You are inside Import Fragment", Toast.LENGTH_SHORT).show();
                 }
             }
         });

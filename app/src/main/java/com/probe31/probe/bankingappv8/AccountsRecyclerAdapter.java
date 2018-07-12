@@ -1,11 +1,12 @@
 package com.probe31.probe.bankingappv8;
 
-import android.content.Context;
+
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import android.widget.TextView;
 
 import com.probe31.probe.bankingappv8.model.Account;
@@ -18,11 +19,13 @@ public class AccountsRecyclerAdapter extends RecyclerView.Adapter<AccountsRecycl
 
         TextView nameAccount_text;
         TextView amountAccount_text;
+        TextView numberAccount_text;
 
         public ViewHolder(View view) {
             super(view);
             nameAccount_text = (TextView)view.findViewById(R.id.nameAccount_text);
             amountAccount_text = (TextView)view.findViewById(R.id.amountAccount_text);
+            numberAccount_text = (TextView)view.findViewById(R.id.numberAccount_text);
         }
     }
 
@@ -45,8 +48,8 @@ public class AccountsRecyclerAdapter extends RecyclerView.Adapter<AccountsRecycl
     public void onBindViewHolder(AccountsRecyclerAdapter.ViewHolder holder, int position) {
         Account account = accountList.get(position);
         holder.nameAccount_text.setText(account.getName());
-        //holder.amountAccount_text.setText("99999");
-        holder.amountAccount_text.setText(String.valueOf(account.getAmount()));
+        holder.amountAccount_text.setText("S/. "+String.valueOf(account.getAmount()));
+        holder.numberAccount_text.setText(String.valueOf(account.getNumber()));
     }
 
 
@@ -56,7 +59,6 @@ public class AccountsRecyclerAdapter extends RecyclerView.Adapter<AccountsRecycl
         this.accountList = accountList;
         notifyDataSetChanged();
     }
-
 
 
 

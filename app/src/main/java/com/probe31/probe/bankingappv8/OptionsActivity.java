@@ -43,6 +43,20 @@ public class OptionsActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+    }
+
+    void LoadAccountFragment()
+    {
+        setTitle(R.string.my_accounts);
+        Fragment fragment = new AccountsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.screen_area, fragment);
+        ft.commit();
     }
 
     @Override
@@ -81,19 +95,20 @@ public class OptionsActivity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
-        Fragment fragment = null;
+        //Fragment fragment = null;
 
         int id = item.getItemId();
 
         if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_accounts) {
-            fragment = new AccountsFragment();
+            //fragment = new AccountsFragment();
+            LoadAccountFragment();
         } else if (id == R.id.nav_transfer) {
 
         }
 
-        if(fragment != null)
+        /*if(fragment != null)
         {
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -101,7 +116,7 @@ public class OptionsActivity extends AppCompatActivity
             ft.replace(R.id.screen_area, fragment);
 
             ft.commit();
-        }
+        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
