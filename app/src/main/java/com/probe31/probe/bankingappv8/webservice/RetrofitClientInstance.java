@@ -15,7 +15,7 @@ public class RetrofitClientInstance {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     //.baseUrl(Resources.getSystem().getString(R.string.api_url))
-                    .baseUrl("http://192.168.1.6:8000")
+                    .baseUrl("http://192.168.1.21:8000")
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
