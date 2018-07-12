@@ -35,10 +35,22 @@ public class LoginActivityViewModel extends ViewModel{
         tokenRequest.setPassword(password);
         tokenRequest.setGrant_type("password");
         tokenRequest.setClient_id("2");
-        tokenRequest.setClient_secret("Dz7cZeLBcUgiL8Jj5psRJdRUU964EsbkAXtsmZEf");
+        tokenRequest.setClient_secret("8F69XflRI1FKdxiCQdqFZJXDgfv9pWVM9mQ2n16w");
+        //CASA: Dz7cZeLBcUgiL8Jj5psRJdRUU964EsbkAXtsmZEf
+        //OFICINA: 8F69XflRI1FKdxiCQdqFZJXDgfv9pWVM9mQ2n16w
 
         tokenResponse = loginRepository.getToken(tokenRequest);
 
         return tokenResponse;
+    }
+
+    public boolean validateDNI(String username)
+    {
+        return !TextUtils.isEmpty(username) && TextUtils.getTrimmedLength(username)==8;
+    }
+
+    public boolean validatePassword(String password)
+    {
+        return !TextUtils.isEmpty(password);
     }
 }

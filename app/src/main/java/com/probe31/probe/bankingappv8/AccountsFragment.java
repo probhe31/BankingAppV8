@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.probe31.probe.bankingappv8.model.Account;
+import com.probe31.probe.bankingappv8.model.AccountResponse;
 import com.probe31.probe.bankingappv8.viewmodel.AccountsFragmentViewModel;
 
 import java.util.List;
@@ -53,13 +54,13 @@ public class AccountsFragment extends Fragment {
 
         int idTest = 1;
 
-        accountsFragmentVM.getAccountsList(idTest).observe(this, new Observer<List<Account>>() {
+        accountsFragmentVM.getAccountsList(idTest).observe(this, new Observer<AccountResponse>() {
             @Override
-            public void onChanged(@Nullable List<Account> accountResponse) {
+            public void onChanged(@Nullable AccountResponse accountResponse) {
 
                 if(accountResponse!=null)
                 {
-                    accountList= accountResponse;
+                    accountList= accountResponse.getBankAccounts();
                     accountsRecyclerAdapter.setAccountList(accountList);
                     //Toast.makeText(getActivity(), "You are inside Import Fragment", Toast.LENGTH_SHORT).show();
                 }

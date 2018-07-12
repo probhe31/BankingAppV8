@@ -32,6 +32,10 @@ public class LoginRepository {
         call.enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
+
+                Log.d("bherring1", response.toString());
+                Log.d("bherring2", response.body().toString());
+
                 TokenResponse tokenResponse = response.body();
 
                 if(tokenResponse != null)

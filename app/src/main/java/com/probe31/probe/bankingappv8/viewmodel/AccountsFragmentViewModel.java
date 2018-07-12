@@ -5,6 +5,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import com.probe31.probe.bankingappv8.model.Account;
+import com.probe31.probe.bankingappv8.model.AccountResponse;
 import com.probe31.probe.bankingappv8.model.AccountsRequest;
 import com.probe31.probe.bankingappv8.repository.AccountRepository;
 
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class AccountsFragmentViewModel extends ViewModel{
 
-    private MutableLiveData<List<Account>> accountResponse;
+    private MutableLiveData<AccountResponse> accountResponse;
     private AccountRepository accountRepository;
 
     public AccountsFragmentViewModel(){
@@ -21,11 +22,11 @@ public class AccountsFragmentViewModel extends ViewModel{
         accountRepository = new AccountRepository();
     }
 
-    public LiveData<List<Account>> getAccountsList(int userId)
+    public LiveData<AccountResponse> getAccountsList(int customerID)
     {
-        AccountsRequest accountRequest = new AccountsRequest();
-        accountRequest.setId(userId);
-        accountResponse = accountRepository.getAccountList(accountRequest);
+        //AccountsRequest accountRequest = new AccountsRequest();
+        //accountRequest.setId(userId);
+        accountResponse = accountRepository.getAccountList(customerID);
         return accountResponse;
     }
 

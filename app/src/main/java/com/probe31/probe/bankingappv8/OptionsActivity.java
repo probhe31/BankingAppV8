@@ -46,6 +46,8 @@ public class OptionsActivity extends AppCompatActivity
 
 
 
+        LoadAccountFragment();
+
 
     }
 
@@ -53,6 +55,16 @@ public class OptionsActivity extends AppCompatActivity
     {
         setTitle(R.string.my_accounts);
         Fragment fragment = new AccountsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.screen_area, fragment);
+        ft.commit();
+    }
+
+    void LoadTransferFragment()
+    {
+        setTitle(R.string.transfer);
+        Fragment fragment = new TransferFragment();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
         ft.replace(R.id.screen_area, fragment);
@@ -102,21 +114,11 @@ public class OptionsActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
 
         } else if (id == R.id.nav_accounts) {
-            //fragment = new AccountsFragment();
             LoadAccountFragment();
         } else if (id == R.id.nav_transfer) {
-
+            LoadTransferFragment();
         }
 
-        /*if(fragment != null)
-        {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-
-            ft.replace(R.id.screen_area, fragment);
-
-            ft.commit();
-        }*/
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

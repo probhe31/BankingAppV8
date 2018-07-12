@@ -5,6 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 public class TokenResponse {
 
+    @SerializedName("customer_id")
+    @Expose
+    private String customer_id;
+
+
     @SerializedName("access_token")
     @Expose
     private String access_token;
@@ -36,5 +41,9 @@ public class TokenResponse {
 
     public String getRefresh_token() {
         return refresh_token;
+    }
+
+    public String getCustomer_id() {
+        return customer_id;
     }
 }

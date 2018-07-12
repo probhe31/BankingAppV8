@@ -34,6 +34,8 @@ public class LoginActivity extends AppCompatActivity {
         login_form = findViewById(R.id.login_form);
         loginActivityVM = ViewModelProviders.of(this).get(LoginActivityViewModel.class);
 
+        setTitle(R.string.bank_name);
+
     }
 
     public void sendLoginForm(View view) {
@@ -50,14 +52,15 @@ public class LoginActivity extends AppCompatActivity {
         String dni = dniEdit.getText().toString();
         String password = passwordEdit.getText().toString();
 
-        if(TextUtils.isEmpty(dni))
+
+        if(!loginActivityVM.validateDNI(dni))
         {
             dniEdit.setError(getText(R.string.dni_error));
             focusView = dniEdit;
             cancel = true;
         }
 
-        if(TextUtils.isEmpty(password))
+        if(!loginActivityVM.validatePassword(password))
         {
             passwordEdit.setError(getText(R.string.password_error));
             focusView = passwordEdit;

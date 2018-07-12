@@ -4,6 +4,7 @@ import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import com.probe31.probe.bankingappv8.model.Account;
+import com.probe31.probe.bankingappv8.model.AccountResponse;
 import com.probe31.probe.bankingappv8.model.AccountsRequest;
 import com.probe31.probe.bankingappv8.webservice.AccountAPIService;
 import com.probe31.probe.bankingappv8.webservice.RetrofitClientInstance;
@@ -18,24 +19,24 @@ public class AccountRepository {
 
     private AccountAPIService accountAPIService;
 
-    public MutableLiveData<List<Account>> getAccountList(final AccountsRequest accountRequest) {
+    public MutableLiveData<AccountResponse> getAccountList(final int customerID) {
 
-        final MutableLiveData<List<Account>> accountsResponseMutableLiveData = new MutableLiveData<>();
+        final MutableLiveData<AccountResponse> accountsResponseMutableLiveData = new MutableLiveData<>();
 
         accountAPIService = RetrofitClientInstance.getRetrofitInstance().create(AccountAPIService.class);
 
-        Call<List<Account>> call = accountAPIService.getAccountList(accountRequest);
+        Call<AccountResponse> call = accountAPIService.getAccountList("Token 4358a340d8d7aa32d537bdd5c4e1378ea3a9bc58", customerID);
 
-        call.enqueue(new Callback<List<Account>>() {
+        call.enqueue(new Callback<AccountResponse>() {
             @Override
-            public void onResponse(Call<List<Account>> call, Response<List<Account>> response) {
+            public void onResponse(Call<AccountResponse> call, Response<AccountResponse> response) {
 
-                Log.d("onresponse: ", "response: " + response );
-                Log.d("onresponse: ", "body: " + response.body());
+                //Log.d("onresponse: ", "response: " + response );
+                //Log.d("onresponse: ", "body: " + response.body());
 
-                List<Account> accountResponse = response.body();
+                AccountResponse accountResponse = response.body();
 
-                Log.d("onresponse: ", "body: " + accountResponse.get(0).getName());
+                //Log.d("onresponse: ", "body: " + accountResponse.get(0).getName());
 
                 if(accountResponse != null)
                 {
@@ -50,7 +51,7 @@ public class AccountRepository {
             }
 
             @Override
-            public void onFailure(Call<List<Account>> call, Throwable t) {
+            public void onFailure(Call<AccountResponse> call, Throwable t) {
 
                 Log.d("failure: ", "error: " + t );
                 accountsResponseMutableLiveData.setValue(null);
