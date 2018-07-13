@@ -47,6 +47,14 @@ public class AccountsFragment extends Fragment {
 
         accountsFragmentVM = ViewModelProviders.of(this).get(AccountsFragmentViewModel.class);
 
+        fillRecyclerView();
+
+
+    }
+
+
+    void fillRecyclerView()
+    {
         recyclerView = (RecyclerView)getView().findViewById(R.id.accountsRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -69,7 +77,5 @@ public class AccountsFragment extends Fragment {
                 }
             }
         });
-
-
     }
 }

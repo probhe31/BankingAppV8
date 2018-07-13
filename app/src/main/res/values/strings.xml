@@ -26,5 +26,5 @@
     <string name="select">Seleccionar</string>
     <string name="amountTile">Monto</string>
     <string name="amountHint">0.00</string>
-    <string name="accountHint">XXXX-XXXX-XXXX-XXXX</string>
+    <string name="accountHint">XXXX</string>
 </resources>

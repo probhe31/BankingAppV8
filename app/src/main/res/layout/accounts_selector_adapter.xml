@@ -52,6 +52,15 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/use_btn"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="48dp"
+            android:layout_weight="1"
+            android:width="2dp"
+            android:text="Usar" />
+
     </LinearLayout>
 
 
