@@ -28,16 +28,17 @@ public class LoginActivityViewModel extends ViewModel{
         return tokenResponse;
     }
 
+    public LiveData<Integer> checkNetwork(){
+        return loginRepository.getResponseCode();
+    }
+
+
     public LiveData<TokenResponse> tryLogin(String username, String password)
     {
         TokenRequest tokenRequest = new TokenRequest();
         tokenRequest.setUsername(username);
         tokenRequest.setPassword(password);
-        tokenRequest.setGrant_type("password");
-        tokenRequest.setClient_id("2");
-        tokenRequest.setClient_secret("8F69XflRI1FKdxiCQdqFZJXDgfv9pWVM9mQ2n16w");
-        //CASA: Dz7cZeLBcUgiL8Jj5psRJdRUU964EsbkAXtsmZEf
-        //OFICINA: 8F69XflRI1FKdxiCQdqFZJXDgfv9pWVM9mQ2n16w
+
 
         tokenResponse = loginRepository.getToken(tokenRequest);
 

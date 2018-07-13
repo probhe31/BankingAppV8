@@ -21,6 +21,7 @@ public interface AccountAPIService {
 
     //@Headers({"Authorization : 4358a340d8d7aa32d537bdd5c4e1378ea3a9bc58"})
     @GET("api/v1/customers/{id_customer}")
-    Call<AccountResponse> getAccountList(@Header("Authorization")String access_token, @Path("id_customer")int customerId);
+    //Call<AccountResponse> getAccountList(@Header("Authorization")String access_token, @Path("id_customer")int customerId);
+    Call<AccountResponse> getAccountList(@Path("id_customer")int customerId);
 
 }

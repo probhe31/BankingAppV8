@@ -47,9 +47,9 @@ public class AccountsRecyclerAdapter extends RecyclerView.Adapter<AccountsRecycl
     @Override
     public void onBindViewHolder(AccountsRecyclerAdapter.ViewHolder holder, int position) {
         Account account = accountList.get(position);
-        holder.nameAccount_text.setText("Cuenta de ahorros");//account.getName()
+        holder.nameAccount_text.setText(account.getType());
         //holder.amountAccount_text.setText("S/. "+String.valueOf(account.getAmount()));
-        holder.amountAccount_text.setText("S/. 5000.00");
+        holder.amountAccount_text.setText("S/."+account.getBalance());
         holder.numberAccount_text.setText(String.valueOf(account.getNumber()));
     }
 

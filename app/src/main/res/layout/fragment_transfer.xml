@@ -27,7 +27,7 @@
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/select_account_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1.5"
@@ -60,7 +60,7 @@
                     android:textColor="@color/cardview_dark_background" />
 
                 <TextView
-                    android:id="@+id/numberAccount_text"
+                    android:id="@+id/from_account_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="4444-5555-6666-1412" />
@@ -100,7 +100,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/editText"
+                android:id="@+id/amount_transfer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -130,7 +130,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/other_account_text"
+                android:id="@+id/to_account_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -143,11 +143,12 @@
 
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/transfer_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:background="@color/colorPrimary"
+            android:onClick="MakeTransfer"
             android:text="Transferir"
             android:textColor="@android:color/white" />
 

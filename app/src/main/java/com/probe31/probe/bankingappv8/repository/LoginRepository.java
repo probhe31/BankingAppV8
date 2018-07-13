@@ -19,33 +19,52 @@ import retrofit2.Retrofit;
 public class LoginRepository {
 
     private LoginAPIService loginAPIService;
+    private MutableLiveData<Integer> responseCode;
 
+    public LoginRepository(){
+        responseCode = new MutableLiveData<>();
+    }
+
+    public MutableLiveData<Integer> getResponseCode() {
+        return responseCode;
+    }
 
     public MutableLiveData<TokenResponse> getToken(final TokenRequest tokenRequest) {
 
         final MutableLiveData<TokenResponse> tokenResponseMutableLiveData = new MutableLiveData<>();
 
+
         loginAPIService = RetrofitClientInstance.getRetrofitInstance().create(LoginAPIService.class);
-
-
         Call<TokenResponse> call = loginAPIService.getTokenAccess(tokenRequest);
         call.enqueue(new Callback<TokenResponse>() {
             @Override
             public void onResponse(Call<TokenResponse> call, Response<TokenResponse> response) {
 
-                Log.d("bherring1", response.toString());
-                Log.d("bherring2", response.body().toString());
+                responseCode.setValue(response.code());
 
-                TokenResponse tokenResponse = response.body();
+                if(response.isSuccessful())
+                {
+                    TokenResponse tokenResponse = response.body();
 
-                if(tokenResponse != null)
-                {
-                    tokenResponseMutableLiveData.setValue(tokenResponse);
-                }
-                else
-                {
-                    //-if(response.code()== HttpURLConnection.HTTP_UNAUTHORIZED)
-                        tokenResponseMutableLiveData.setValue(null);
+                    if(tokenResponse != null)
+                    {
+                        tokenResponseMutableLiveData.setValue(tokenResponse);
+                    }
+                    else
+                    {
+                        if(response.code()==HttpURLConnection.HTTP_UNAUTHORIZED){
+
+                            tokenResponseMutableLiveData.setValue(null);
+
+                        }else{
+
+
+                            tokenResponseMutableLiveData.setValue(null);
+
+                        }
+
+
+                    }
 
                 }
             }
@@ -53,7 +72,7 @@ public class LoginRepository {
             @Override
             public void onFailure(Call<TokenResponse> call, Throwable t) {
 
-                Log.d("bherring", "On failure " + t);
+
                 tokenResponseMutableLiveData.setValue(null);
 
             }

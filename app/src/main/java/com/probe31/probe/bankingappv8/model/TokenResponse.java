@@ -7,7 +7,7 @@ public class TokenResponse {
 
     @SerializedName("customer_id")
     @Expose
-    private String customer_id;
+    private int customer_id;
 
 
     @SerializedName("access_token")
@@ -27,6 +27,16 @@ public class TokenResponse {
     private String refresh_token;
 
 
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getAccess_token() {
         return access_token;
     }
@@ -43,7 +53,7 @@ public class TokenResponse {
         return refresh_token;
     }
 
-    public String getCustomer_id() {
+    public int getCustomer_id() {
         return customer_id;
     }
 }

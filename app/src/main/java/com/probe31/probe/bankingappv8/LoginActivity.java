@@ -5,6 +5,7 @@ import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.probe31.probe.bankingappv8.model.TokenResponse;
 import com.probe31.probe.bankingappv8.viewmodel.LoginActivityViewModel;
@@ -26,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     LinearLayout login_form;
 
 
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +37,21 @@ public class LoginActivity extends AppCompatActivity {
         login_form = findViewById(R.id.login_form);
         loginActivityVM = ViewModelProviders.of(this).get(LoginActivityViewModel.class);
 
+        this.context = this;
+
+        loginActivityVM.checkNetwork().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(@Nullable Integer idError) {
+
+                if(idError==401){
+                    Toast.makeText(context, "Authorization problem", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
         setTitle(R.string.bank_name);
+
 
     }
 
@@ -75,13 +92,16 @@ public class LoginActivity extends AppCompatActivity {
             loginActivityVM.tryLogin(dni, password).observe(this, new Observer<TokenResponse>() {
                 @Override
                 public void onChanged(@Nullable TokenResponse tokenResponse) {
-                    if(tokenResponse!=null)
-                    {
-                        goToMainMenu();
-                    }else
-                    {
-                        showProgress(false);
-                    }
+                if(tokenResponse!=null)
+                {
+                    SharedPreferences preferences = getSharedPreferences("myPrefs", MODE_PRIVATE);
+                    preferences.edit().putString("token", tokenResponse.getAccess_token()).commit();
+                    preferences.edit().putInt("id_customer", tokenResponse.getCustomer_id()).commit();
+                    goToMainMenu();
+                }else
+                {
+                    showProgress(false);
+                }
                 }
             });
 

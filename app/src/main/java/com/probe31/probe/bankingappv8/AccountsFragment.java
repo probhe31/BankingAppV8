@@ -2,6 +2,7 @@ package com.probe31.probe.bankingappv8;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -52,9 +53,11 @@ public class AccountsFragment extends Fragment {
         accountsRecyclerAdapter = new AccountsRecyclerAdapter(accountList);
         recyclerView.setAdapter(accountsRecyclerAdapter);
 
-        int idTest = 1;
+        SharedPreferences settings = getActivity().getSharedPreferences("myPrefs", 0);
+        String token = settings.getString("token", "");
+        int idClient = settings.getInt("id_customer", 0);
 
-        accountsFragmentVM.getAccountsList(idTest).observe(this, new Observer<AccountResponse>() {
+        accountsFragmentVM.getAccountsList(token, idClient).observe(this, new Observer<AccountResponse>() {
             @Override
             public void onChanged(@Nullable AccountResponse accountResponse) {
 

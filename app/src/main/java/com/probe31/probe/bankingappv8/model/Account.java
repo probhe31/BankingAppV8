@@ -8,29 +8,29 @@ public class Account
     @SerializedName("id")
     @Expose
     private int id;
-    @SerializedName("name")
+    @SerializedName("type")
     @Expose
-    private String name;
+    private String type;
     @SerializedName("number")
     @Expose
     private String number;
-    @SerializedName("amount")
+    @SerializedName("balance")
     @Expose
-    private float amount;
+    private float balance;
 
     public int getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
+    public String getType() {
+        return type;
     }
 
     public String getNumber() {
         return number;
     }
 
-    public float getAmount() {
-        return amount;
+    public float getBalance() {
+        return balance;
     }
 }

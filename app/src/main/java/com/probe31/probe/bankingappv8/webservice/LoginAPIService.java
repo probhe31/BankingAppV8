@@ -10,7 +10,6 @@ import retrofit2.http.POST;
 
 public interface LoginAPIService {
 
-    //@POST("oauth/token")
     @POST("api/v1/login")
     Call<TokenResponse> getTokenAccess(@Body TokenRequest tokenRequest);
 
